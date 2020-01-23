@@ -10,8 +10,6 @@ src = 'Dataset/PetImages/'
 if not os.path.isdir(src):
     print("""
           Dataset not found in your computer.
-          Please follow the instructions in the link below to download the dataset:
-          https://raw.githubusercontent.com/PacktPublishing/Neural-Network-Projects-with-Python/master/chapter4/how_to_download_the_dataset.txt
           """)
     quit()
 
