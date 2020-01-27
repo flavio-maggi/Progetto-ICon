@@ -6,20 +6,18 @@ import random
 
 src = 'Dataset/PetImages/'
 
-# Check if the dataset has been downloaded. If not, direct user to download the dataset first
+# Controlla che il dataset sia stato scaricato
 if not os.path.isdir(src):
-    print("""
-          Dataset not found in your computer.
-          """)
+    print("""Dataset non presente nel computer.""")
     quit()
 
-# Get list of file names
+# Prendi la lista dei nomi dei file
 _, _, cat_images = next(os.walk('Dataset/PetImages/Cat'))
 
-# Prepare a 3x3 plot (total of 9 images)
+# Prepara un plot 3x3 (9 imagini in totale)
 fig, ax = plt.subplots(3,3, figsize=(20,10))
 
-# Randomly select and plot an image
+# Seleziona casualmente e effettua il plot di un'immagine
 for idx, img in enumerate(random.sample(cat_images, 9)):
     img_read = plt.imread('Dataset/PetImages/Cat/'+img)
     ax[int(idx/3), idx%3].imshow(img_read)
@@ -29,13 +27,13 @@ for idx, img in enumerate(random.sample(cat_images, 9)):
 plt.show()
 
 
-# Get list of file names
+# Prendi la lista dei nomi dei file
 _, _, dog_images = next(os.walk('Dataset/PetImages/Dog'))
 
-# Prepare a 3x3 plot (total of 9 images)
+# Prepara un plot 3x3 (9 imagini in totale)
 fig, ax = plt.subplots(3,3, figsize=(20,10))
 
-# Randomly select and plot an image
+# Seleziona casualmente e effettua il plot di un'immagine
 for idx, img in enumerate(random.sample(dog_images, 9)):
     img_read = plt.imread('Dataset/PetImages/Dog/'+img)
     ax[int(idx/3), idx%3].imshow(img_read)
