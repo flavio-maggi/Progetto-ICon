@@ -1,7 +1,7 @@
 import os
 import warnings
 warnings.filterwarnings("ignore")
-from CNN.utils import train_test_split
+from cnn_utils import train_test_split
 
 src = 'Dataset/PetImages/'
 
@@ -20,13 +20,13 @@ from keras.layers import Dropout, Flatten, Dense
 from keras.preprocessing.image import ImageDataGenerator
 
 # Definizione HYPERPARAMETERS
-FILTER_SIZE = 3                         # grandezza del filtro per le convoluzioni (in questo caso 3x3)
-NUM_FILTERS = 32                        # il numero di filtri utilizati
-INPUT_SIZE  = 32                        # numero di pixel per la compressione dell'immagine (in questo caso 32x32), ci sarà perdita di informazione ma aumento delle prestazioni generali
-MAXPOOL_SIZE = 2                        # grandezza per max pooling (in questo caso 2x2, dimezzerà l'input del layer precendente)
-BATCH_SIZE = 16                         # numero dei training samples da usare in ogni mini batch durante la gradient descent. Più aumenta più aumenta l'accuratezza, ma aumenta anche il tempo per il training
+FILTER_SIZE     = 3                     # grandezza del filtro per le convoluzioni (in questo caso 3x3)
+NUM_FILTERS     = 32                    # il numero di filtri utilizati
+INPUT_SIZE      = 32                    # numero di pixel per la compressione dell'immagine (in questo caso 32x32), ci sarà perdita di informazione ma aumento delle prestazioni generali
+MAXPOOL_SIZE    = 2                     # grandezza per max pooling (in questo caso 2x2, dimezzerà l'input del layer precendente)
+BATCH_SIZE      = 16                    # numero dei training samples da usare in ogni mini batch durante la gradient descent. Più aumenta più aumenta l'accuratezza, ma aumenta anche il tempo per il training
 STEPS_PER_EPOCH = 20000//BATCH_SIZE     # numero di iterazioni per training epoch
-EPOCHS = 10                             # numero di epoch per effettuare il training sui dati
+EPOCHS          = 10                    # numero di epoch per effettuare il training sui dati
 
 # creazione del modello sequenziale
 model = Sequential()
@@ -54,18 +54,18 @@ model.add(Dense(units = 1, activation = 'sigmoid')) # creazione di 1 nodo e 'sig
 model.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
 
 training_data_generator = ImageDataGenerator(rescale = 1./255)
-testing_data_generator = ImageDataGenerator(rescale = 1./255)
+testing_data_generator  = ImageDataGenerator(rescale = 1./255)
 
 # training sulla cartella /Train
 training_set = training_data_generator.flow_from_directory(src+'Train/',
                                                 target_size = (INPUT_SIZE, INPUT_SIZE),
-                                                batch_size = BATCH_SIZE,
-                                                class_mode = 'binary')
+                                                batch_size  = BATCH_SIZE,
+                                                class_mode  = 'binary')
 # testing sulla cartella /Test
 test_set = testing_data_generator.flow_from_directory(src+'Test/',
                                              target_size = (INPUT_SIZE, INPUT_SIZE),
-                                             batch_size = BATCH_SIZE,
-                                             class_mode = 'binary')
+                                             batch_size  = BATCH_SIZE,
+                                             class_mode  = 'binary')
 
 model.fit_generator(training_set, steps_per_epoch = STEPS_PER_EPOCH, epochs = EPOCHS, verbose=1)
 

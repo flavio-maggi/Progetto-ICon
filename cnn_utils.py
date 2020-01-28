@@ -16,22 +16,28 @@ def train_test_split(src_folder, train_size = 0.8):
 	os.makedirs(src_folder+'Test/Cat/')
 	os.makedirs(src_folder+'Test/Dog/')
 
-	# Estrazione numero delle immagini di cani e gatti
-	_, _, cat_images = next(os.walk(src_folder+'Cat/'))
-	files_to_be_removed = ['Thumbs.db', '666.jpg', '835.jpg'] # alcune file danneggiati contenuti nel dataset che davano problemi in fase di test
+	# Estrazione numero delle immagini di cani e gatti e rimozione file corrotti
+	_, _, cat_images    = next(os.walk(src_folder+'Cat/'))
+	files_to_be_removed = ['Thumbs.db', '666.jpg', '835.jpg','140.jpg','660.jpg',
+						   '850.jpg', '936.jpg', '2663.jpg', '3300.jpg', '3491.jpg', '4833.jpg', '8470.jpg', '5553.jpg',
+						   '7964.jpg', '7968.jpg', '7978.jpg', '9171.jpg', '9565.jpg', '9778.jpg', '10125.jpg',
+						   '10404.jpg', '10501.jpg', '10820.jpg', '11210.jpg', '11565.jpg', '11874.jpg', '11935.jpg'] # alcuni file danneggiati contenuti nel dataset che davano problemi in fase di test
 	for file in files_to_be_removed:
 		cat_images.remove(file)
-	num_cat_images = len(cat_images)
+	num_cat_images       = len(cat_images)
 	num_cat_images_train = int(train_size * num_cat_images)
-	num_cat_images_test = num_cat_images - num_cat_images_train
+	num_cat_images_test  = num_cat_images - num_cat_images_train
 
-	_, _, dog_images = next(os.walk(src_folder+'Dog/'))
-	files_to_be_removed = ['Thumbs.db', '11702.jpg'] # alcune file danneggiati contenuti nel dataset che davano problemi in fase di test
+	_, _, dog_images    = next(os.walk(src_folder+'Dog/'))
+	files_to_be_removed = ['Thumbs.db', '11702.jpg', '1308.jpg', '1866.jpg', '2384.jpg', '10401.jpg', '10797.jpg',
+						   '2688.jpg', '2877.jpg', '3136.jpg', '3288.jpg', '3588.jpg', '5604.jpg', '7369.jpg', '4367.jpg',
+						   '5736.jpg', '6059.jpg', '6238.jpg', '7112.jpg', '7133.jpg', '7459.jpg', '7969.jpg', '10158.jpg',
+						   '8730.jpg', '9188.jpg', '10747.jpg', '11410.jpg', '11675.jpg', '11849.jpg', '11853.jpg', '6718.jpg'] # alcuni file danneggiati contenuti nel dataset che davano problemi in fase di test
 	for file in files_to_be_removed:
 		dog_images.remove(file)
-	num_dog_images = len(dog_images)
+	num_dog_images       = len(dog_images)
 	num_dog_images_train = int(train_size * num_dog_images)
-	num_dog_images_test = num_dog_images - num_dog_images_train
+	num_dog_images_test  = num_dog_images - num_dog_images_train
 
 	# Assegnazione in maniera casuale le immagini alle cartelle Train e Test
 	cat_train_images = random.sample(cat_images, num_cat_images_train)
