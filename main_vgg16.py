@@ -1,7 +1,7 @@
 import os
 import warnings
 warnings.filterwarnings("ignore")
-from utils import train_test_split
+from cnn_utils import train_test_split
 
 src = 'Dataset/PetImages/'
 
