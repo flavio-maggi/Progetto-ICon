@@ -6,6 +6,19 @@ import cv2
 import os
 import h5py
 
+from cnn_utils import train_test_split
+
+src = 'Dataset/PetImages/'
+
+# Controlla se il dataset sia stato scaricato.
+if not os.path.isdir(src):
+    print(""" Dataset non presente nel computer.""")
+    quit()
+
+# Crea le cartelle di train e test se non esistono
+if not os.path.isdir(src+'train/'):
+    train_test_split(src)
+
 # parametri
 images_per_class = 12501
 fixed_size       = tuple((500, 500))

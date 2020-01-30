@@ -14,6 +14,7 @@ from sklearn.svm import SVC
 
 warnings.filterwarnings('ignore')
 
+
 # parametri
 num_trees = 100  # numero degli alberi da creare nel Random Forest Classifier
 test_size = 0.10 # parametro da utilizzare nella suddivisione dei dati
